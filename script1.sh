@@ -5,6 +5,18 @@
 #Date 2025 Oct 05
 #
 #Porpuse:Show system information
-echo
-echo System report for $(hostname) genrated by: $USER, on $(date)
+
+
+hostName=$(hostname)
+date=$(date)
+userName=$(whoami)
+source /etc/os-release
+osName=$PRETTY_NAME
+
+
+
+
+
+echo $osName
+echo $hostName
 
