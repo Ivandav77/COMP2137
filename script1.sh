@@ -14,10 +14,10 @@ source /etc/os-release
 osName=$PRETTY_NAME
 runTime=$(uptime)
 cpuInfo=$(lscpu | grep "Model name" | cut -d: -f2 | xargs)
+ramInfo=$(free -h | awk '/Mem:/ {print $2}')
 
 
-
-
+echo $ramInfo
 echo $osName
 echo $hostName
 echo $runTime
