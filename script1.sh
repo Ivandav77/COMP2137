@@ -12,11 +12,13 @@ date=$(date)
 userName=$(whoami)
 source /etc/os-release
 osName=$PRETTY_NAME
-
+runTime=$(uptime)
+cpuInfo=$(lscpu | grep "Model name" | cut -d: -f2 | xargs)
 
 
 
 
 echo $osName
 echo $hostName
-
+echo $runTime
+echo $cpuInfo
