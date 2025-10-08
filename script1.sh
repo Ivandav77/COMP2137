@@ -54,4 +54,3 @@ echo "Procses count: $numberOfProses"
 echo "Load avreages: $loadAvarageInfo"
 echo "Listening network ports: $activePorts"
 echo "UFW status: $ufwStatus"
-
