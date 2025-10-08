@@ -12,7 +12,7 @@ date=$(date)
 userName=$(whoami)
 source /etc/os-release
 osName=$PRETTY_NAME
-runTime=$(uptime)
+runTime=$(uptime | cut -d, -f1 | awk '{print $3}')
 cpuInfo=$(lscpu | grep "Model name" | cut -d: -f2 | xargs)
 ramInfo=$(free -h | awk '/Mem:/ {print $2}')
 diskNames=$(sudo lshw -class disk | grep "product:" | cut -d: -f2 | xargs)
@@ -37,7 +37,7 @@ echo
 echo "System information"
 echo "--------------------"
 echo "Operating System: $osName"
-echo "Uptime: $runTime"
+echo "Uptime: $runTime min"
 echo "CPU information: $cpuInfo"
 echo "Ram information: $ramInfo"
 echo "Disk(s) information fore each respectevly: $diskNames $diskSizes"
