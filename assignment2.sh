@@ -6,7 +6,7 @@
 #
 #Date: 2025 Nov 11
 
-if  "$USER" != "root" ; then
+if  [ "$USER" != "root" ]; then
     echo "Please run this script as syupper user (sudo)"
     exit 1
 fi
@@ -49,3 +49,24 @@ else
     apt install -y squid
     systemctl start squid
 fi
+
+
+userNames=(dennis aubrey captain snibbles brownie scooter sandy perrier cindy tiger yoda)
+
+for user in "${userNames[@]}"; do
+    echo "creatig a user with the name $user"
+    useradd -m -s /bin/bash "$user"
+    passwd -d "$user"
+
+    homeDirectori="/home/$user"
+    mkdir -p "$homeDirectori/.ssh"
+
+    for i in rsa ed25519; do
+        ssh-keygen -t "$i" -f "$homeDirectori/.ssh/id_$i" -N ""
+    done
+
+    cat "$homeDirectori"/.ssh/id_*.pub > "$homeDirectori/.ssh/authorized_keys"
+    chown -R "$user" "$homeDirectori/.ssh"
+    chmod 700 "$homeDirectori/.ssh"
+    chmod 600 "$homeDirectori/.ssh/authorized_keys"
+done
